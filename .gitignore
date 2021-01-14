@@ -1,0 +1,22 @@
+# ignore all data stored
+**/udpoutput
+**/.venv
+**/dask-worker-space
+
+# ignore other smaller datasets
+*.dat
+*.zip
+*.gz
+*.tar.gz
+
+*.png
+*.pdf
+
+/20201215_uranus/notebooks/bg_removal_with_off_stokesI.tar.gz
+/20201013_jupiter/.ipynb_checkpoints/sk_interactive-checkpoint.ipynb
+/20201215_uranus/notebooks/-r
+/20201215_uranus/notebooks/bg_removal_with_off_stokesI/uranus_stokesI_bg_subtraction_150ms_res.tar.gz
+/20201215_uranus/notebooks/stokesI_plots_freqnormed.zip
+/20201215_uranus/notebooks/bg_removal_with_off_stokesI.tar.gz
+/20201215_uranus/notebooks/stokesV_plots_freqnormed.zip
+#this should just store jupyter notebooks, python files, and images. 
