@@ -3,6 +3,7 @@
 **/.venv
 **/dask-worker-space
 **/.ipynb-checkpoints
+**/__pycache__
 
 # ignore other smaller datasets
 *.dat
