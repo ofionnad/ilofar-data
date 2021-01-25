@@ -18,7 +18,7 @@ from matplotlib import gridspec,transforms
 sys.path.insert(1, '../../20201013_jupiter/')
 from sk import LofarRaw
 
-def get_data_lims(sbs_number, trange):
+def get_data_lims(sbs, obs_mode, sbs_number, trange):
     """
     Return the limits of the data in usable form
     sbs_number = number of subbands used
@@ -221,7 +221,7 @@ if __name__=="__main__":
     rawoffdata = LofarRaw(fname=off_fname, sbs=sbs, obs_mode=obs_mode, frange=frange)
     rawoffdata.data = rawoffdata.data[:,:no_sbs]
 
-    ylims, xlims = get_data_lims(no_sbs, trange)
+    ylims, xlims = get_data_lims(sbs, obs_mode, no_sbs, trange)
 
     df_chunk = data_chunker(rawdata.data, nsplit)
     off_chunk = data_chunker(rawoffdata.data, nsplit)
