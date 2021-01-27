@@ -33,13 +33,18 @@ def get_data_lims(sbs, obs_mode, sbs_number, trange):
 
     return freqlimits, xlims
 
-def plot_data(data, xs, ys, trange, xlims, flims, xlabel, ylabel, plotname, plot_title):
+def plot_data(data, xs, ys, xlims, flims, xlabel, ylabel, plotname, plot_title, gs=False):
     print("\nPlotting...\n")
+    if gs:
+        cmap = plt.cm.Greys
+    else:
+        cmap = plt.cm.viridis
+
     if xs is None and ys is None:
         print("Not using summed axes!")
         f, ax = plt.subplots(figsize=(12,6))
         f.set_facecolor('white')
-        im = ax.imshow(data.T, aspect='auto', origin='lower',
+        im = ax.imshow(data.T, aspect='auto', origin='lower', cmap=cmap,
             vmin=np.nanpercentile(data.T, 5), 
             vmax=np.nanpercentile(data.T, 90),
             extent=[xlims[0], xlims[1], 
