@@ -33,7 +33,7 @@ def get_data_lims(sbs, obs_mode, sbs_number, trange):
 
     return freqlimits, xlims
 
-def plot_data(data, xs, ys, xlims, flims, xlabel, ylabel, plotname, plot_title, gs=False):
+def plot_data(data, xs, ys, xlims, flims, xlabel, ylabel, plotname, plot_title, minutes=True, gs=False):
     print("\nPlotting...\n")
     if gs:
         cmap = plt.cm.Greys
@@ -55,8 +55,11 @@ def plot_data(data, xs, ys, xlims, flims, xlabel, ylabel, plotname, plot_title, 
         plt.colorbar(im, cax=cax)
 
         ax.xaxis_date()
-        date_format = mdates.DateFormatter('%H:%M:%S')
+        date_format = mdates.DateFormatter('%H:%M:%S.%f')
         ax.xaxis.set_major_formatter(date_format)
+        if minutes:
+            ax.xaxis.set_minor_locator(mdates.MinuteLocator())
+        f.autofmt_xdate()
 
         ax.set_title(plot_title)
         ax.set_ylabel(ylabel, fontsize=14)
@@ -91,9 +94,12 @@ def plot_data(data, xs, ys, xlims, flims, xlabel, ylabel, plotname, plot_title, 
                         flims[0].value, flims[1].value])
 
         ax2.xaxis_date()
-        date_format = mdates.DateFormatter('%H:%M:%S')
+        date_format = mdates.DateFormatter('%H:%M:%S.%f')
         ax2.xaxis.set_major_formatter(date_format)
-
+        if minutes:
+            ax2.xaxis.set_minor_locator(mdates.MinuteLocator())
+        f.autofmt_xdate()
+        
         ax2.set_title("Uranus observation - Stokes I")
         ax2.set_ylabel(ylabel, fontsize=14)
         ax2.set_xlabel(xlabel, fontsize=14)

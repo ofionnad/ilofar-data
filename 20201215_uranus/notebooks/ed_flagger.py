@@ -6,7 +6,6 @@ There are a couple methods for doing this, and it is a work in progress.
 
 import numpy as np 
 
-
 def get_aeff(wavelength, d):
     """
     The the aeff of lofar lba at different frequencies
@@ -94,6 +93,8 @@ def basic_filter(dynspec, trigger_threshold, stokesV=False):
                 diff_2 = np.abs(j - post)
                 if diff_1 > dyn_threshold and diff_2 > dyn_threshold and j > (bg_mean + dyn_threshold):
                     mask[ii,jj] = 1
+                    with open('trigger_indices.dat', 'a+') as f:
+                        f.write("{}\n".format(ii))
                 else:
                     pass
                 #increment the comparison pixels
