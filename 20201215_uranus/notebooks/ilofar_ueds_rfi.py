@@ -207,23 +207,25 @@ if __name__=="__main__":
     off_fname = '../udpoutput/offsource-stokesVectors_0_2020-12-15T20:04:00_19629670898060'
     cal_fname = '../udpoutput/cygA-stokesVectors_0_2020-12-15T20:00:00_19629667968374' #calibrator has different obs length!
 
-    plot_names = 'test_script/Uranus_StokesI_'
-    plot_title = "Uranus observation - Stokes I"
+    filename = '/mnt/ucc4_data1/data/Uranus/2021_11_30/Uranus_IE613_2021-11-30T23:00:00.000.fil'
 
-    frange = [15,30]
-    sbs = np.arange(76,198)
+    plot_names = 'test_script/Uranus_StokesI_'
+    plot_title = "Uranus observation - Stokes I - IE613 - 2021-11-30"
+
+    frange = [15,50]
+    sbs = np.arange(40,451)
     obs_mode = 3
-    time_len_mins = 176.
-    trange = TimeRange(filename.split('_')[-2], time_len_mins*u.min)
-    xlabel = "Time from {} {}".format(filename.split('_')[-2].split('T')[0], filename.split('_')[-2].split('T')[1])
-    xlabel = "Time on {} (UTC)".format(filename.split('_')[-2].split('T')[0])
+    time_len_mins = 60.
+    trange = TimeRange(filename.split('_')[-1].strip('.fil'), time_len_mins*u.min)
+    xlabel = "Time from {} {}".format(filename.split('_')[-1].strip('.fil').split('T')[0], filename.split('_')[-1].strip('.fil').split('T')[1])
+    xlabel = "Time on {} (UTC)".format(filename.split('_')[-1].strip('.fil').split('T')[0])
     ylabel = "Frequency (MHz)"
-    title = filename.split('/')[2]
-    no_sbs = 78 #number of usable subbands!
+    title = filename.split('/')[-1]
+    no_sbs = 411 #number of usable subbands!
 
     #how much to split up data into
     nsplit = 10
-    r_factor = 12207
+    r_factor = 64
 
     #on-beam
     rawdata = LofarRaw(fname=filename, sbs=sbs, obs_mode=obs_mode, frange=frange)
